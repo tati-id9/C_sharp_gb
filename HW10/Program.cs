@@ -32,7 +32,7 @@ else
 int number = Math.Abs(int.Parse(Console.ReadLine()));
 string numberS = Convert.ToString(number);
 
-if (number>99)
+if (number>=100)
 {
     string result = Convert.ToString(numberS[2]);
     Console.WriteLine (result);
@@ -41,8 +41,8 @@ if (number>99)
 else
 {
     Console.WriteLine ("Tретьей цифры нет");
-} */
-
+}
+ */
 /* Задача 15: Напишите программу, которая принимает на вход цифру, 
 обозначающую день недели, и проверяет, является ли этот день выходным.
 6 -> да
@@ -55,9 +55,13 @@ void DayWeek (int day)
     {
         Console.WriteLine("Это выходной день недели");
     }
-    else
+    else if (day>=1 && day<=5)
     {
         Console.WriteLine("Это не выходной день недели");
+    }
+    else
+    {
+        Console.WriteLine("Это не день недели");
     }
 }
 
