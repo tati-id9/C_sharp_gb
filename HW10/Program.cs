@@ -1,26 +1,53 @@
-﻿/* Задача 10: Напишите программу, которая принимает на вход 
+﻿Console.Clear();
+Console.WriteLine ("Список задач: \n Задача № 10: Программа, которая принимает на вход трёхзначное число и на выходе показывает вторую цифру этого числа.\n Задача № 13: Программа, которая выводит третью цифру заданного числа или сообщает,что третьей цифры нет. \n Задача № 15: Программа, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.");
+Console.WriteLine ("Введите номер задачи, программу которой необходимо запустить: ");
+int N = int.Parse(Console.ReadLine());
+
+switch(N)
+{
+    case 10:
+        SecondDigitOfTheNumber();
+        break;
+
+    case 13:
+        ThirdDigitOfTheNumber();
+        break;
+
+    case 15:
+        DayWeek();
+        break;
+
+    default:
+        Console.WriteLine ("Такой задачи нет");   ;
+        break;
+}
+
+/* Задача 10: Напишите программу, которая принимает на вход 
 трёхзначное число и на выходе показывает вторую цифру этого числа.
 456 -> 5
 782 -> 8
 918 -> 1 */
 
-/* int Func(int namber)
+void SecondDigitOfTheNumber()
 {
-    return Math.Abs((namber/10)%10);
+    Console.WriteLine ("Ввведите трехзначное число:");
+    int sNumber = int.Parse(Console.ReadLine());
+
+    if ((sNumber>=100 && sNumber<1000) || (sNumber<=-100 && sNumber>-1000))
+    {
+        int result = Func(sNumber);
+        Console.WriteLine ($"Вторая цифра числа: {result}");
+    }
+    else
+    {
+        Console.WriteLine ("Вы ввели не верное число, число должно быть трехзначным");
+    }
 }
 
-Console.WriteLine ("Ввведите число:");
-int a = int.Parse(Console.ReadLine());
-
-if ((a>=100 && a<1000) || (a<=-100 && a>-1000))
+int Func(int number)
 {
-    int result = Func(a);
-    Console.WriteLine (result);
+    return Math.Abs((number/10)%10);
 }
-else
-{
-    Console.WriteLine ("Вы ввели не верное число, число должно быть трехзначным");
-} */
 
 /* Задача 13: Напишите программу, которая выводит третью цифру заданного числа или сообщает, 
 что третьей цифры нет.
@@ -28,31 +55,63 @@ else
 78 -> третьей цифры нет
 32679 -> 6 */
 
-/* Console.WriteLine ("Ввведите число:");
-int number = Math.Abs(int.Parse(Console.ReadLine()));
-string numberS = Convert.ToString(number);
-
-if (numberS.Length>2)
+void ThirdDigitOfTheNumber()
 {
-    string result = Convert.ToString(numberS[2]);
-    Console.WriteLine (result);
+    Console.WriteLine ("Ввведите число:");
+    int number = Math.Abs(int.Parse(Console.ReadLine()));
+    Console.WriteLine ("Способы решения задачи: \n № 1 - поиск по строке, \n № 2 - поиск с помощью математической функции, \n № 3 - поиск с помощью цикла. \n Ввведите номер способа решения задачи:");
+    int N = int.Parse(Console.ReadLine());
 
+    switch(N)
+    {
+        case 1:
+            StringSearch(number);
+            break;
+
+        case 2:
+            SearchFunction(number);
+            break;
+
+        case 3:
+            SearchWithALoop (number);
+            break;
+
+        default:
+            Console.WriteLine ("Такого способа решения задачи нет");   ;
+            break;
+    }
 }
-else
+
+//нахождение числа в строке
+void StringSearch (int number)
 {
-    Console.WriteLine ("Tретьей цифры нет");
-} */
+    string numberS = Convert.ToString(number);
 
-/* Console.WriteLine ("Ввведите число:");
-int n = Math.Abs(int.Parse(Console.ReadLine()));
-int k = (int)Math.Log10(n)-2;
-Console.WriteLine(k < 0 ? "Tретьей цифры нет" : (n % (int)Math.Pow(10, k + 1) / (int)Math.Pow(10, k)).ToString()); */
+    if (numberS.Length>2)
+    {
+        string result = Convert.ToString(numberS[2]);
+        Console.WriteLine ($"Третья цифра = {result}");
+    }
+    else
+    {
+        Console.WriteLine ("Tретьей цифры нет");
+    }
+}
 
-Console.WriteLine ("Ввведите число:");
-int n = Math.Abs(int.Parse(Console.ReadLine()));
-ThirdDigitOfTheNumber (n);
+//нахождение числа с помощью функции
+void SearchFunction (int number)
+{
+    int k = (int)Math.Log10(number)-2;
+    Console.WriteLine(k < 0 ? "Tретьей цифры нет" : $"Третья цифра = {SFunc(number, k)}");
+}
 
-void ThirdDigitOfTheNumber (int number)
+int SFunc(int n, int k)
+{
+    return n % (int)Math.Pow(10, k + 1) / (int)Math.Pow(10, k);
+}
+
+//нахождение числа с помощью цикла
+void SearchWithALoop (int number)
 {
     if (number>=1000)
     {
@@ -78,13 +137,16 @@ void ThirdDigitOfTheNumber (int number)
 7 -> да
 1 -> нет */
 
-/* void DayWeek (int day)
+void DayWeek ()
 {
-    if (day == 6 || day == 7)
+    Console.WriteLine ("Ввведите цифру, обозначающую день недели:");
+    int dayNumber = int.Parse(Console.ReadLine());
+    
+    if (dayNumber == 6 || dayNumber == 7)
     {
         Console.WriteLine("Это выходной день недели");
     }
-    else if (day>=1 && day<=5)
+    else if (dayNumber>=1 && dayNumber<=5)
     {
         Console.WriteLine("Это не выходной день недели");
     }
@@ -93,7 +155,3 @@ void ThirdDigitOfTheNumber (int number)
         Console.WriteLine("Это не день недели");
     }
 }
-
-Console.WriteLine ("Ввведите цифру, обозначающую день недели:");
-int number = int.Parse(Console.ReadLine());
-DayWeek(number); */
