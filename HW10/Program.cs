@@ -43,10 +43,34 @@ else
     Console.WriteLine ("Tретьей цифры нет");
 } */
 
-Console.WriteLine ("Ввведите число:");
+/* Console.WriteLine ("Ввведите число:");
 int n = Math.Abs(int.Parse(Console.ReadLine()));
 int k = (int)Math.Log10(n)-2;
-Console.WriteLine(k < 0 ? "Tретьей цифры нет" : (n % (int)Math.Pow(10, k + 1) / (int)Math.Pow(10, k)).ToString());
+Console.WriteLine(k < 0 ? "Tретьей цифры нет" : (n % (int)Math.Pow(10, k + 1) / (int)Math.Pow(10, k)).ToString()); */
+
+Console.WriteLine ("Ввведите число:");
+int n = Math.Abs(int.Parse(Console.ReadLine()));
+ThirdDigitOfTheNumber (n);
+
+void ThirdDigitOfTheNumber (int number)
+{
+    if (number>=1000)
+    {
+        while (number>1000)
+        {
+            number = number/10;  
+        }
+    Console.WriteLine ($"Третья цифра = {number%10}");
+    }
+    else if (number>=100 && number<1000)
+    {
+        Console.WriteLine ($"Третья цифра = {number%10}");
+    }
+    else
+    {
+        Console.WriteLine ("Tретьей цифры нет");
+    }
+}
 
 /* Задача 15: Напишите программу, которая принимает на вход цифру, 
 обозначающую день недели, и проверяет, является ли этот день выходным.
