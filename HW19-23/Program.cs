@@ -33,7 +33,7 @@ double Distance (double [,] array)
     {
          dist = dist + Math.Pow((array[1,i]-array[0,i]), 2);
     }
-    return Math.Round (Math.Sqrt(dist), 2);
+    return Math.Round(Math.Sqrt(dist), 2);
 }
 
 /* Задача 23
