@@ -13,3 +13,22 @@ A (7,-5, 0); B (1,-1,9) -> 11.53 */
 Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
 3 -> 1, 8, 27
 5 -> 1, 8, 27, 64, 125 */
+Console.WriteLine ("Ввведите число:");
+int N = int.Parse(Console.ReadLine());
+
+double[] GetCube (int n)
+{
+    double[] arr = new double[n];
+
+    for (int i=1; i<=n;i++)
+    {
+        arr [i-1]= Math.Pow(i,3);
+    }
+    return arr;
+}
+
+Console.Write("Таблица кубов -> ");
+foreach (int num in GetCube (N))
+{
+    Console.Write($"{num} ");
+}
