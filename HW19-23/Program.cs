@@ -1,6 +1,6 @@
 ﻿Console.Clear();
-Console.WriteLine ("Список задач: \n Задача № 19: Программа, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.\n Задача № 21: Программа, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.\n Задача № 23: которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.");
-Console.WriteLine ("Введите номер задачи, программу которой необходимо запустить: ");
+Console.WriteLine("Список задач: \n Задача № 19: Программа, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.\n Задача № 21: Программа, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.\n Задача № 23: которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.");
+Console.WriteLine("Введите номер задачи, программу которой необходимо запустить: ");
 int task = int.Parse(Console.ReadLine());
 
 if (task == 19)
@@ -9,7 +9,7 @@ if (task == 19)
 }
 else if (task == 21)
 {
-
+    SearchDistanc();
 }
 else if (task == 23)
 {
@@ -17,8 +17,8 @@ else if (task == 23)
 }
 else
 {
-    Console.WriteLine ("Такой задачи нет");
-}  
+    Console.WriteLine("Такой задачи нет");
+}
 
 /* Задача 19
 Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
@@ -26,29 +26,29 @@ else
 12821 -> да
 23432 -> да */
 
-void SearchPalindrome ()
+void SearchPalindrome()
 {
-    Console.WriteLine ("Ввведите число:");
+    Console.WriteLine("Ввведите число:");
     int N = int.Parse(Console.ReadLine());
-    if (N>=10000 && N<100000)
+    if (N >= 10000 && N < 100000)
     {
         Palindrome(N);
     }
     else
     {
-        Console.WriteLine ("Вы ввели не верное число, число должно быть пятизначным");
+        Console.WriteLine("Вы ввели не верное число, число должно быть пятизначным");
     }
 }
 
-void Palindrome (int number)
+void Palindrome(int number)
 {
-    if (((number/10000) == (number%10)) && ((number/1000%10) == (number%100/10)))
+    if (((number / 10000) == (number % 10)) && ((number / 1000 % 10) == (number % 100 / 10)))
     {
-        Console.WriteLine ($"Число {number} - является палиндромом");
+        Console.WriteLine($"Число {number} - является палиндромом");
     }
     else
     {
-        Console.WriteLine ($"Число {number} - не является палиндромом");
+        Console.WriteLine($"Число {number} - не является палиндромом");
     }
 }
 
@@ -57,29 +57,32 @@ void Palindrome (int number)
 A (3,6,8); B (2,1,-7), -> 15.84
 A (7,-5, 0); B (1,-1,9) -> 11.53 */
 
-double [,] arrPoint =new double [2,3];
-arrPoint [0,0] = Coordinate("x", "A");
-arrPoint [0,1] = Coordinate("y", "A");
-arrPoint [0,2] = Coordinate("z", "A");
-arrPoint [1,0] = Coordinate("x", "B");
-arrPoint [1,1] = Coordinate("y", "B");
-arrPoint [1,2] = Coordinate("z", "B");
+void SearchDistanc()
+{
+    double[,] arrPoint = new double[2, 3];
+    arrPoint[0, 0] = Coordinate("x", "A");
+    arrPoint[0, 1] = Coordinate("y", "A");
+    arrPoint[0, 2] = Coordinate("z", "A");
+    arrPoint[1, 0] = Coordinate("x", "B");
+    arrPoint[1, 1] = Coordinate("y", "B");
+    arrPoint[1, 2] = Coordinate("z", "B");
 
-Console.Write ($"Расстояние между точками А({arrPoint [0,0]},{arrPoint [0,1]},{arrPoint [0,2]}) ");
-Console.Write ($"и B({arrPoint [1,0]},{arrPoint [1,1]},{arrPoint [1,2]}) -> {Distance(arrPoint)}");
- 
+    Console.Write($"Расстояние между точками А({arrPoint[0, 0]},{arrPoint[0, 1]},{arrPoint[0, 2]}) ");
+    Console.Write($"и B({arrPoint[1, 0]},{arrPoint[1, 1]},{arrPoint[1, 2]}) -> {Distance(arrPoint)}");
+}
+
 int Coordinate(string coorName, string pointName)
 {
     Console.Write($"Введите координату {coorName} точки {pointName}: ");
     return int.Parse(Console.ReadLine());
 }
 
-double Distance (double [,] array)
+double Distance(double[,] array)
 {
-    double dist=0;
-    for(int i=0; i<array.GetLength(1); i++)
+    double dist = 0;
+    for (int i = 0; i < array.GetLength(1); i++)
     {
-         dist = dist + Math.Pow((array[1,i]-array[0,i]), 2);
+        dist = dist + Math.Pow((array[1, i] - array[0, i]), 2);
     }
     return Math.Round(Math.Sqrt(dist), 2);
 }
