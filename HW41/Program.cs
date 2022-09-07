@@ -1,31 +1,52 @@
-﻿/* Задача 41: Пользователь вводит с клавиатуры M чисел. 
+﻿Console.Clear();
+Console.WriteLine("Список задач:\nЗадача № 41: Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь. Ввод чисел происходит через Enter, останавливается при введении слова 'stop'");
+Console.WriteLine("\nЗадача № 43: Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.");
+Console.WriteLine("\nВведите номер задачи, программу которой необходимо запустить: ");
+int task = int.Parse(Console.ReadLine());
+
+if (task == 41)
+{
+    Task41();
+}
+else if (task == 43)
+{
+    Task43();
+}
+else
+{
+    Console.WriteLine("Такой задачи нет");
+}
+
+/* Задача 41: Пользователь вводит с клавиатуры M чисел. 
 Посчитайте, сколько чисел больше 0 ввёл пользователь. 
 Ввод чисел происходит через Enter, останавливается при введении слова "stop"
 
 0, 7, 8, -2, -2 -> 2
 1, -7, 567, 89, 223-> 3 */
-Task41();
 
 void Task41()
 {
     System.Console.WriteLine("Введите числа: ");
     string arrS = String.Empty;
 
-    //arrS +=WL();
-
-    System.Console.WriteLine(arrS);
+    arrS += ArrayInput();
+    int m = ElementCount(arrS);
+    double[] arrNumber = ArrayOfNumbers(arrS, m);
+    int count = РositiveNumbers(arrNumber);
+    System.Console.WriteLine($"Введенный массив -> [{string.Join(", ", arrNumber)}]");
+    System.Console.WriteLine($"Количество чисел больше 0 равно: {count}");
 }
 
-string WL()
+string ArrayInput()
 {
     string s = Console.ReadLine();
-    if (s == "stop")
+    if (s.ToLower() == "stop")
     {
-        return " ";
+        return "";
     }
     else
     {
-        return WL();
+        return s + " " + ArrayInput();
     }
 }
 
@@ -35,7 +56,7 @@ int ElementCount (string s) //подсчет элементов в массив�
 
     for (int i = 0; i < s.Length; i++)
     {
-        if (s[i] == ',')
+        if (s[i] == ' ')
         {
             count++;
         }
@@ -43,23 +64,22 @@ int ElementCount (string s) //подсчет элементов в массив�
     return count;
 }
 
-
-int[] ArrayOfNumbers(string sNew, int count)// функция  создания и заполнения массива из строки
+double[] ArrayOfNumbers(string sNew, int count)// функция  создания и заполнения массива из строки
 {
-    int[] arrayOfNumbers = new int[count];
+    double[] arrayOfNumbers = new double[count];
     int j =0;
     for (int i = 0; i < count; i++)
     {
         string s = "";
 
-        while (sNew[j] != ',' && j < sNew.Length)
+        while (sNew[j] != ' ' && j < sNew.Length)
         {
             s += sNew[j];
             j++;
         }
 
         j++;
-        arrayOfNumbers[i] = Convert.ToInt32(s);
+        arrayOfNumbers[i] = Convert.ToDouble(s);
     }
 
     return arrayOfNumbers;
@@ -84,8 +104,6 @@ int РositiveNumbers (double[] arr) // подсчет чисел больше 0
 
 b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5) */
 
-//Task43();
-
 void Task43()
 {
     double[,] arrСoefficient = new double[2, 2];
@@ -95,6 +113,7 @@ void Task43()
     System.Console.WriteLine($"Уравение прямой №2 у2 = ({arrСoefficient[1, 0]}) * х + ({arrСoefficient[1, 1]}) ");
     GetIntersection(arrСoefficient);
 }
+
 double[,] Сoefficient() // заполнение коэффициентов уравнений в массив
 {
     double[,] arr = new double[2, 2];
