@@ -1,19 +1,21 @@
 ﻿
-Console.WriteLine($"Задача по 8 лекции");
+Console.WriteLine($"Задача по лекции 8");
 
 int n = InputNumbers("Введите количество строк: ");
 
 double[,] pascalTriangle = new double[n + 1, 2 * n + 1];
 
 FillPascalTriangle(pascalTriangle);
-
-Console.WriteLine();
 WriteArray(pascalTriangle);
-
 TransformationPascalTriangle(pascalTriangle);
-
-Console.WriteLine();
 WriteArray(pascalTriangle);
+
+int InputNumbers(string input)
+{
+  System.Console.WriteLine(input);
+  int output = int.Parse(Console.ReadLine());
+  return output;
+}
 
 void TransformationPascalTriangle(double[,] array)
 {
@@ -56,17 +58,10 @@ void WriteArray(double[,] array)
     {
       if (array[i, j] != 0)
       {
-          System.Console.WriteLine($"{array[i, j]} ");
+          Console.Write($"{array[i, j]} ");
       }
-      else System.Console.WriteLine("  ");
+      else Console.Write("  ");
     }
-    System.Console.WriteLine();
+    System.Console.WriteLine();;
   }
-}
-
-int InputNumbers(string input)
-{
-    System.Console.WriteLine(input);
-    int output = int.Parse(Console.ReadLine());
-    return output;
 }
