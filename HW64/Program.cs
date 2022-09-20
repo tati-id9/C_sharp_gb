@@ -13,7 +13,7 @@ System.Console.Write("Введите номер задачи, которую н�
 int numberTask = int.Parse(Console.ReadLine());
 System.Console.WriteLine();
 
-if (m<0 && n<0) 
+if (m<0 || n<0) 
 {
     System.Console.WriteLine("Вы ввели отрицательные числа");
 }
